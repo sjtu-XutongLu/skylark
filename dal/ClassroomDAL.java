@@ -54,7 +54,7 @@ public class ClassroomDAL {
 		String userName = "wwt";  //Ĭ���û���
 		String userPwd = "310522";  //����
 		Connection dbConn;  
-	    Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver") ;   
+	    Class.forName("net.sourceforge.jtds.jdbc.Driver") ;
 	    dbConn = DriverManager.getConnection(dbURL, userName, userPwd);
 	    String sql = "select * from classroom ";
 	    if(building == -1 && floor == -1 && door == "") {}
@@ -91,6 +91,4 @@ public class ClassroomDAL {
         }
 		return list;
 	}
-
-
 }

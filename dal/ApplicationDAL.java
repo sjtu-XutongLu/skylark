@@ -18,7 +18,33 @@ import net.sourceforge.jtds.jdbc.Driver;
 import com.example.xutong.toolbar.model.Application;
 
 public class ApplicationDAL {
+
+
+
+
+
 	public static String dbURL = "jdbc:jtds:sqlserver://59.78.44.148:1433/test1";
+
+
+	//未完成1
+	//注意 小教室还要判断userID2 和 3！！！！！！！！！！！！！！
+	public static ArrayList<Application>  getApplicationByUser(int userID){
+		//传入用户ID，返回用户所有的预订记录
+		ArrayList<Application> res = new ArrayList<Application>();;
+		return  res;
+	}
+
+
+	//未完成2
+	public static ArrayList<Application>  getApplicationByClassroom(int classroomID){
+		//传入用户ID，返回用户所有的预订记录
+		ArrayList<Application> res = new ArrayList<Application>();;
+		return  res;
+	}
+
+
+
+
     public static Application getApplication(int serialNumber) throws SQLException, ClassNotFoundException {
         //����ˮ�ŷ���Application
     	  //���ӷ����������ݿ�test
@@ -59,7 +85,7 @@ public class ApplicationDAL {
 		String userName = "wwt";  //Ĭ���û���
 		String userPwd = "310522";  //����
 		Connection dbConn;  
-	    Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver") ;   
+	    Class.forName("net.sourceforge.jtds.jdbc.Driver") ;
 	    dbConn = DriverManager.getConnection(dbURL, userName, userPwd);
 	    String sql = " insert into [dbo].[apply]([serialNumber],[userID],[classroomID],[applyTime],[applyReason],[remarks],[adminID],[applyDate],[postTime],[applyState],[applypassword],[userID2],[userID3]) VALUES ("
 	    			+(application.serialNumber + "") + ","
@@ -90,7 +116,7 @@ public class ApplicationDAL {
 		String userName = "wwt";  //Ĭ���û���
 		String userPwd = "310522";  //����
 		Connection dbConn;  
-	    Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+	    Class.forName("net.sourceforge.jtds.jdbc.Driver");
 	    dbConn = DriverManager.getConnection(dbURL, userName, userPwd);
 	    String sql = "select * from apply where serialNumber = " + (application.serialNumber + "");
 	    System.out.println(sql);
@@ -133,7 +159,7 @@ public class ApplicationDAL {
 		String userName = "wwt";  //Ĭ���û���
 		String userPwd = "310522";  //����
 		Connection dbConn;  
-	    Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+	    Class.forName("net.sourceforge.jtds.jdbc.Driver");
 	    dbConn = DriverManager.getConnection(dbURL, userName, userPwd);
 	    String sql = "select * from apply where applyState = " + (applyState + "");
 	    System.out.println(sql);
@@ -167,7 +193,7 @@ public class ApplicationDAL {
 		String userName = "wwt";  //Ĭ���û���
 		String userPwd = "310522";  //����
 		Connection dbConn;  
-	    Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+	    Class.forName("net.sourceforge.jtds.jdbc.Driver");
 	    dbConn = DriverManager.getConnection(dbURL, userName, userPwd);
 	    String sql = "select * from apply where classroomID = " + (classroomID + "") + " and " + 
 	    			"applyDate = \'" + applyDate.toString() + "\' and applyTime = " + (applyTime + "");
@@ -194,4 +220,6 @@ public class ApplicationDAL {
         }
         return res;
     }
+
+
 }
