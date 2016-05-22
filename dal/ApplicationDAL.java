@@ -28,7 +28,7 @@ public class ApplicationDAL {
 
 	//未完成1
 	//注意 小教室还要判断userID2 和 3！！！！！！！！！！！！！！
-	public static ArrayList<Application>  getApplicationByUser(int userID){
+	public static ArrayList<Application>  getApplicationByUser(long userID){
 		//传入用户ID，返回用户所有的预订记录
 		ArrayList<Application> res = new ArrayList<Application>();;
 		return  res;

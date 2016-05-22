@@ -17,7 +17,7 @@ import com.example.xutong.toolbar.model.Classroom;
 public class ClassroomDAL {
 	
 	//���� ID �����
-	public static String dbURL = "jdbc:sqlserver://10.189.131.157:1433; DatabaseName=test1";
+	public static String dbURL = "jdbc:jtds:sqlserver://59.78.44.148:1433/test1";
 	public static Classroom getClassroom(int classroomID) throws ClassNotFoundException, SQLException{
 		Classroom res = new Classroom();
 		//ͨ��SQL ��� �����ݿ���� ID ���ҵ�������� 
