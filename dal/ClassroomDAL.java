@@ -1,4 +1,4 @@
-package com.example.xutong.toolbar.dal;
+package dal;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,26 +7,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-//import com.microsoft.sqlserver.*;
-//import com.microsoft.sqlserver.jdbc.SQLServerDriver;
 import net.sourceforge.jtds.jdbc.Driver;
-import com.example.xutong.toolbar.model.Application;
-import com.example.xutong.toolbar.model.Classroom;
+import model.Application;
+import model.Classroom;
 
 public class ClassroomDAL {
-	
-	//ï¿½ï¿½ï¿½ï¿½ ID ï¿½ï¿½ï¿½ï¿½ï¿½
-	public static String dbURL = "jdbc:jtds:sqlserver://59.78.44.148:1433/test1";
+	public static String dbURL = "jdbc:jtds:sqlserver://localhost:1433/test1";
+	//¸ù¾Ý ID ²é½ÌÊÒ
 	public static Classroom getClassroom(int classroomID) throws ClassNotFoundException, SQLException{
 		Classroom res = new Classroom();
-		//Í¨ï¿½ï¿½SQL ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ ID ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
-		//ï¿½ï¿½×°Ö®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ classroom ï¿½ï¿½Ä¶ï¿½ï¿½ï¿½
-		 //ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½test
-		String userName = "wwt";  //Ä¬ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½
-		String userPwd = "310522";  //ï¿½ï¿½ï¿½ï¿½
+		//Í¨¹ýSQL Óï¾ä ÔÚÊý¾Ý¿â¸ù¾Ý ID ÖÐÕÒµ½Õâ¸ö½ÌÊÒ 
+		//°ü×°Ö®ºó ·µ»ØÕâ¸ö classroom ÀàµÄ¶ÔÏó
+		  //Á¬½Ó·þÎñÆ÷ºÍÊý¾Ý¿âtest
+		String userName = "wwt";  //Ä¬ÈÏÓÃ»§Ãû
+		String userPwd = "310522";  //ÃÜÂë
 		Connection dbConn;  
-	    Class.forName("net.sourceforge.jtds.jdbc.Driver") ;
+	    Class.forName("net.sourceforge.jtds.jdbc.Driver") ;   
 	    dbConn = DriverManager.getConnection(dbURL, userName, userPwd);
 	    String sql = "select * from classroom where classroomID = " + (classroomID + "");
 	    System.out.println(sql);
@@ -46,15 +42,15 @@ public class ClassroomDAL {
         else return new Classroom();
 	}
 	
-	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ building=-1 ï¿½ï¿½Ê¾ï¿½Îºï¿½ building ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  floorÍ¬ï¿½ï¿½ doorï¿½ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½Ö·ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ÎºÎ¶ï¿½ï¿½ï¿½ï¿½ï¿½
-	public static ArrayList<Classroom> searchClassroom(int building,int floor,String door) throws SQLException, ClassNotFoundException{
-		ArrayList<Classroom> list = new ArrayList<Classroom>();
-		// Í¨ï¿½ï¿½ SQL
-		//String dbURL = "jdbc:sqlserver://localhost:1433; DatabaseName=test1";  //ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½test
-		String userName = "wwt";  //Ä¬ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½
-		String userPwd = "310522";  //ï¿½ï¿½ï¿½ï¿½
+	//¸ù¾ÝÌõ¼þ²é½ÌÊÒ Èç¹û building=-1 ±íÊ¾ÈÎºÎ building ¾ù¿ÉÒÔ  floorÍ¬Àí doorÈç¹ûÊÇ¿Õ×Ö·û´®Ò²ÊÇÈÎºÎ¶¼¿ÉÒÔ
+	public static List<Classroom> searchClassroom(int building,int floor,String door) throws SQLException, ClassNotFoundException{
+		List<Classroom> list = new ArrayList<Classroom>();
+		// Í¨¹ý SQL
+		//Á¬½Ó·þÎñÆ÷ºÍÊý¾Ý¿âtest
+		String userName = "wwt";  //Ä¬ÈÏÓÃ»§Ãû
+		String userPwd = "310522";  //ÃÜÂë
 		Connection dbConn;  
-	    Class.forName("net.sourceforge.jtds.jdbc.Driver") ;
+	    Class.forName("net.sourceforge.jtds.jdbc.Driver") ;   
 	    dbConn = DriverManager.getConnection(dbURL, userName, userPwd);
 	    String sql = "select * from classroom ";
 	    if(building == -1 && floor == -1 && door == "") {}
