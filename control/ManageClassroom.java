@@ -25,7 +25,7 @@ public class ManageClassroom {
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTime(date);
 			Classroom c = it.next();
-			if(ProcessApplication.isBooked(c.classroomID,calendar,start,end)){
+			if(!ProcessApplication.isBooked(c.classroomID,calendar,start,end)){
 				res.add(c);
 			}
 		}
