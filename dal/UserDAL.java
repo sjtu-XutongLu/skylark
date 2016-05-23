@@ -13,11 +13,11 @@ import model.User;
  * Created by yuchenlin on 5/22/16.
  */
 public class UserDAL {
-	public static String dbURL = "jdbc:jtds:sqlserver://localhost:1433/test1";  //Á¬½Ó·şÎñÆ÷ºÍÊı¾İ¿âtest
+	public static String dbURL = "jdbc:jtds:sqlserver://localhost:1433/test1";  //è¿æ¥æœåŠ¡å™¨å’Œæ•°æ®åº“test
     public static User getUserByID(long userID) throws SQLException, ClassNotFoundException{
     	User res = new User();
-		String userName = "wwt";  //Ä¬ÈÏÓÃ»§Ãû
-		String userPwd = "310522";  //ÃÜÂë
+		String userName = "wwt";  //é»˜è®¤ç”¨æˆ·å
+		String userPwd = "310522";  //å¯†ç 
 		Connection dbConn;  
 	    Class.forName("net.sourceforge.jtds.jdbc.Driver");
 	    dbConn = DriverManager.getConnection(dbURL, userName, userPwd);
@@ -27,11 +27,10 @@ public class UserDAL {
         ResultSet rs = ps.executeQuery();
         if(rs.next())
         {
-	        res.userID = rs.getInt("adminID");
+	        res.userID = rs.getInt("userID");
 	        res.userType = rs.getInt("userType");
 	        res.password = rs.getString("password");
 	        res.banned = rs.getBoolean("banned");
-	        res.userType = rs.getInt("userType");
 	        res.username = rs.getString("userName");
         }
         return res;  
