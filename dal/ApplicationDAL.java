@@ -19,13 +19,13 @@ import model.Application;
 
 public class ApplicationDAL {
 	public static String dbURL = "jdbc:jtds:sqlserver://59.78.44.148:1433/test1";
-	//Î´Íê³É1
-	//×¢Òâ Ğ¡½ÌÊÒ»¹ÒªÅĞ¶ÏuserID2 ºÍ 3£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡
+	//æœªå®Œæˆ1
+	//æ³¨æ„ å°æ•™å®¤è¿˜è¦åˆ¤æ–­userID2 å’Œ 3ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼
 	public static ArrayList<Application>  getApplicationByUser(long userID) throws ClassNotFoundException, SQLException{
-		//´«ÈëÓÃ»§ID£¬·µ»ØÓÃ»§ËùÓĞµÄÔ¤¶©¼ÇÂ¼
+		//ä¼ å…¥ç”¨æˆ·IDï¼Œè¿”å›ç”¨æˆ·æ‰€æœ‰çš„é¢„è®¢è®°å½•
 		ArrayList<Application> res = new ArrayList<Application>();
-		String userName = "wwt";  //Ä¬ÈÏÓÃ»§Ãû
-		String userPwd = "310522";  //ÃÜÂë
+		String userName = "wwt";  //é»˜è®¤ç”¨æˆ·å
+		String userPwd = "310522";  //å¯†ç 
 		Connection dbConn;  
 	    Class.forName("net.sourceforge.jtds.jdbc.Driver");
 	    dbConn = DriverManager.getConnection(dbURL, userName, userPwd);
@@ -55,11 +55,11 @@ public class ApplicationDAL {
 		return res;
 	}
 	
-	//Î´Íê³É2
+	//æœªå®Œæˆ2
 	public static ArrayList<Application>  getApplicationByClassroom(int classroomID) throws SQLException, ClassNotFoundException{
 		ArrayList<Application> res = new ArrayList<Application>();
-		String userName = "wwt";  //Ä¬ÈÏÓÃ»§Ãû
-		String userPwd = "310522";  //ÃÜÂë
+		String userName = "wwt";  //é»˜è®¤ç”¨æˆ·å
+		String userPwd = "310522";  //å¯†ç 
 		Connection dbConn;  
 	    Class.forName("net.sourceforge.jtds.jdbc.Driver");
 	    dbConn = DriverManager.getConnection(dbURL, userName, userPwd);
@@ -89,10 +89,10 @@ public class ApplicationDAL {
 	}
 	
     public static Application getApplication(int serialNumber) throws SQLException, ClassNotFoundException {
-        //¸øÁ÷Ë®ºÅ·µ»ØApplication
-    	//Á¬½Ó·şÎñÆ÷ºÍÊı¾İ¿âtest
-		String userName = "wwt";  //Ä¬ÈÏÓÃ»§Ãû
-		String userPwd = "310522";  //ÃÜÂë
+        //ç»™æµæ°´å·è¿”å›Application
+    	//è¿æ¥æœåŠ¡å™¨å’Œæ•°æ®åº“test
+		String userName = "wwt";  //é»˜è®¤ç”¨æˆ·å
+		String userPwd = "310522";  //å¯†ç 
 		Connection dbConn;  
 	    Class.forName("net.sourceforge.jtds.jdbc.Driver");   
 	    dbConn = DriverManager.getConnection(dbURL, userName, userPwd);
@@ -120,18 +120,17 @@ public class ApplicationDAL {
         }
         else return new Application();
     }
-
     public static boolean addApplication(Application application) throws SQLException, ClassNotFoundException {
-        //²åÈëApplication£¬·µ»ØÊÇ·ñ³É¹¦
+        //ï¿½ï¿½ï¿½ï¿½Applicationï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½É¹ï¿½
         boolean res = true;
-        //Á¬½Ó·şÎñÆ÷ºÍÊı¾İ¿âtest
-		String userName = "wwt";  //Ä¬ÈÏÓÃ»§Ãû
-		String userPwd = "310522";  //ÃÜÂë
+        //String dbURL = "jdbc:sqlserver://localhost:1433; DatabaseName=test1";  //ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ¿ï¿½test
+		String userName = "wwt";  //Ä¬ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½
+		String userPwd = "310522";  //ï¿½ï¿½ï¿½ï¿½
 		Connection dbConn;  
-	    Class.forName("net.sourceforge.jtds.jdbc.Driver") ;   
+	    Class.forName("net.sourceforge.jtds.jdbc.Driver") ;
 	    dbConn = DriverManager.getConnection(dbURL, userName, userPwd);
-	    String sql = " insert into [dbo].[apply]([serialNumber],[userID],[classroomID],[applyTime],[applyReason],[remarks],[adminID],[applyDate],[postTime],[applyState],[applypassword],[userID2],[userID3]) VALUES ("
-	    			+(application.serialNumber + "") + ","
+	    String sql = " insert into [dbo].[apply]([userID],[classroomID],[applyTime],[applyReason],[remarks],[adminID],[applyDate],[postTime],[applyState],[applypassword],[userID2],[userID3]) VALUES ("
+
 	    			+(application.userID + "") + ","
 	    			+(application.classroomID + "") + ","
 	    			+(application.applyTime + "") + ",\'"
@@ -152,12 +151,13 @@ public class ApplicationDAL {
         } catch(Exception e) {return false;}
         return res;
     }
+   
 
     public static boolean alterApplication(Application application) throws ClassNotFoundException, SQLException {
-        //´«ÈëÔ­ÓĞµÄÒ»ÕÅApplication±í£¬¶ÔÆäĞŞ¸ÄµÄ²¿·ÖÔÚÊı¾İ¿âÖĞ¼ÓÒÔĞŞ¸Ä£¬·µ»ØÊÇ·ñ³É¹¦
-        //Á¬½Ó·şÎñÆ÷ºÍÊı¾İ¿âtest
-		String userName = "wwt";  //Ä¬ÈÏÓÃ»§Ãû
-		String userPwd = "310522";  //ÃÜÂë
+        //ä¼ å…¥åŸæœ‰çš„ä¸€å¼ Applicationè¡¨ï¼Œå¯¹å…¶ä¿®æ”¹çš„éƒ¨åˆ†åœ¨æ•°æ®åº“ä¸­åŠ ä»¥ä¿®æ”¹ï¼Œè¿”å›æ˜¯å¦æˆåŠŸ
+        //è¿æ¥æœåŠ¡å™¨å’Œæ•°æ®åº“test
+		String userName = "wwt";  //é»˜è®¤ç”¨æˆ·å
+		String userPwd = "310522";  //å¯†ç 
 		Connection dbConn;  
 	    Class.forName("net.sourceforge.jtds.jdbc.Driver");
 	    dbConn = DriverManager.getConnection(dbURL, userName, userPwd);
@@ -196,11 +196,11 @@ public class ApplicationDAL {
     }
     
 	public static ArrayList<Application> getApplicationByState(int applyState) throws ClassNotFoundException, SQLException {
-        //·µ»ØËùÓĞapplyState¶ÔÓ¦µÄApplication£¬ÒÔArrayListĞÎÊ½·µ»Ø
+        //è¿”å›æ‰€æœ‰applyStateå¯¹åº”çš„Applicationï¼Œä»¥ArrayListå½¢å¼è¿”å›
         ArrayList<Application> res = new ArrayList<Application>();
-        //Á¬½Ó·şÎñÆ÷ºÍÊı¾İ¿âtest
-		String userName = "wwt";  //Ä¬ÈÏÓÃ»§Ãû
-		String userPwd = "310522";  //ÃÜÂë
+        //è¿æ¥æœåŠ¡å™¨å’Œæ•°æ®åº“test
+		String userName = "wwt";  //é»˜è®¤ç”¨æˆ·å
+		String userPwd = "310522";  //å¯†ç 
 		Connection dbConn;  
 	    Class.forName("net.sourceforge.jtds.jdbc.Driver");
 	    dbConn = DriverManager.getConnection(dbURL, userName, userPwd);
@@ -230,11 +230,11 @@ public class ApplicationDAL {
     }
     
     public static ArrayList<Application> getApplicationByTime(int classroomID, Date applyDate, int applyTime) throws ClassNotFoundException, SQLException {
-        //·µ»ØËùÓĞÊ±¼äºÍ½ÌÊÒÏàÍ¬µÄApplication£¬ÒÔArrayListĞÎÊ½·µ»Ø
+        //è¿”å›æ‰€æœ‰æ—¶é—´å’Œæ•™å®¤ç›¸åŒçš„Applicationï¼Œä»¥ArrayListå½¢å¼è¿”å›
         ArrayList<Application> res = new ArrayList<Application>();;
-        //Á¬½Ó·şÎñÆ÷ºÍÊı¾İ¿âtest
-		String userName = "wwt";  //Ä¬ÈÏÓÃ»§Ãû
-		String userPwd = "310522";  //ÃÜÂë
+        //è¿æ¥æœåŠ¡å™¨å’Œæ•°æ®åº“test
+		String userName = "wwt";  //é»˜è®¤ç”¨æˆ·å
+		String userPwd = "310522";  //å¯†ç 
 		Connection dbConn;  
 	    Class.forName("net.sourceforge.jtds.jdbc.Driver");
 	    dbConn = DriverManager.getConnection(dbURL, userName, userPwd);
