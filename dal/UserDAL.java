@@ -20,8 +20,6 @@ public class UserDAL {
 
     public static User getUserByID(long userID) throws SQLException, ClassNotFoundException{
         User res = new User();
-        String userName = "wwt";  //默认用户名
-        String userPwd = "310522";  //密码
         Connection dbConn;
         Class.forName("net.sourceforge.jtds.jdbc.Driver");
         dbConn = DriverManager.getConnection(dbURL, userName, userPwd);
