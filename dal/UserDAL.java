@@ -21,7 +21,7 @@ public class UserDAL {
 		Connection dbConn;  
 	    Class.forName("net.sourceforge.jtds.jdbc.Driver");
 	    dbConn = DriverManager.getConnection(dbURL, userName, userPwd);
-	    String sql = "select * from apply where userID = " + (userID + "");
+	    String sql = "select * from user where userID = " + (userID + "");
 	    System.out.println(sql);
         PreparedStatement ps = dbConn.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
