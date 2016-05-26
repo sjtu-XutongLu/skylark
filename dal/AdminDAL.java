@@ -1,4 +1,4 @@
-package dal;
+package com.example.xutong.toolbar.dal;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,8 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import model.Admin;
-import model.Application;
+import com.example.xutong.toolbar.model.Admin;
+import com.example.xutong.toolbar.model.Application;
 
 /**
  * Created by yuchenlin on 5/22/16.

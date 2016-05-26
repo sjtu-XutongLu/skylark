@@ -1,13 +1,14 @@
-package dal;
+package com.example.xutong.toolbar.dal;
+
+import com.example.xutong.toolbar.model.Admin;
+import com.example.xutong.toolbar.model.User;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import model.Admin;
-import model.User;
+ 
 
 /**
  * Created by yuchenlin on 5/22/16.

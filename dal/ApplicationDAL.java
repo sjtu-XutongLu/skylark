@@ -1,4 +1,4 @@
-package dal;
+package com.example.xutong.toolbar.dal;
 
 import java.io.BufferedInputStream;
 
@@ -15,7 +15,7 @@ import java.sql.Date;
 //import com.microsoft.sqlserver.*;
 //import com.microsoft.sqlserver.jdbc.SQLServerDriver;
 
-import model.Application;
+import com.example.xutong.toolbar.model.Application;
 
 public class ApplicationDAL {
 	public static String dbURL = "jdbc:jtds:sqlserver://59.78.44.148:1433/test1";

@@ -1,4 +1,4 @@
-package dal;
+package com.example.xutong.toolbar.dal;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,8 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import net.sourceforge.jtds.jdbc.Driver;
-import model.Application;
-import model.Classroom;
+import com.example.xutong.toolbar.model.Application;
+import com.example.xutong.toolbar.model.Classroom;
 
 public class ClassroomDAL {
 	public static String dbURL = "jdbc:jtds:sqlserver://localhost:1433/test1";
