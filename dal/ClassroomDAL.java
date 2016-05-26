@@ -12,79 +12,82 @@ import com.example.xutong.toolbar.model.Application;
 import com.example.xutong.toolbar.model.Classroom;
 
 public class ClassroomDAL {
-	public static String dbURL = "jdbc:jtds:sqlserver://localhost:1433/test1";
-	//¸ù¾İ ID ²é½ÌÊÒ
+	public static String dbURL = DBAdapterConfig.dbURL;
+	public static String userName = DBAdapterConfig.userName;  //é»˜è®¤ç”¨æˆ·å
+	public static String userPwd = DBAdapterConfig.userPwd;  //å¯†ç 
+
+	//æ ¹æ® ID æŸ¥æ•™å®¤
 	public static Classroom getClassroom(int classroomID) throws ClassNotFoundException, SQLException{
 		Classroom res = new Classroom();
-		//Í¨¹ıSQL Óï¾ä ÔÚÊı¾İ¿â¸ù¾İ ID ÖĞÕÒµ½Õâ¸ö½ÌÊÒ 
-		//°ü×°Ö®ºó ·µ»ØÕâ¸ö classroom ÀàµÄ¶ÔÏó
-		  //Á¬½Ó·şÎñÆ÷ºÍÊı¾İ¿âtest
-		String userName = "wwt";  //Ä¬ÈÏÓÃ»§Ãû
-		String userPwd = "310522";  //ÃÜÂë
-		Connection dbConn;  
-	    Class.forName("net.sourceforge.jtds.jdbc.Driver") ;   
-	    dbConn = DriverManager.getConnection(dbURL, userName, userPwd);
-	    String sql = "select * from classroom where classroomID = " + (classroomID + "");
-	    System.out.println(sql);
-        PreparedStatement ps = dbConn.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery();
-        if(rs.next())
-        {
-	        res.classroomType = rs.getInt("classroomType");
-	        res.building = rs.getInt("building");
-	        res.floor = rs.getInt("floor");
-	        res.door = rs.getString("door");
-	        res.classroomID = rs.getInt("classroomID");
-	        res.remarks = rs.getString("remarks");
-	        res.seat = rs.getInt("seat");
-	        return res;
-        }
-        else return new Classroom();
+		//é€šè¿‡SQL è¯­å¥ åœ¨æ•°æ®åº“æ ¹æ® ID ä¸­æ‰¾åˆ°è¿™ä¸ªæ•™å®¤
+		//åŒ…è£…ä¹‹å è¿”å›è¿™ä¸ª classroom ç±»çš„å¯¹è±¡
+		//è¿æ¥æœåŠ¡å™¨å’Œæ•°æ®åº“test
+		
+		
+		Connection dbConn;
+		Class.forName("net.sourceforge.jtds.jdbc.Driver") ;
+		dbConn = DriverManager.getConnection(dbURL, userName, userPwd);
+		String sql = "select * from classroom where classroomID = " + (classroomID + "");
+		System.out.println(sql);
+		PreparedStatement ps = dbConn.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		if(rs.next())
+		{
+			res.classroomType = rs.getInt("classroomType");
+			res.building = rs.getInt("building");
+			res.floor = rs.getInt("floor");
+			res.door = rs.getString("door");
+			res.classroomID = rs.getInt("classroomID");
+			res.remarks = rs.getString("remarks");
+			res.seat = rs.getInt("seat");
+			return res;
+		}
+		else return new Classroom();
 	}
-	
-	//¸ù¾İÌõ¼ş²é½ÌÊÒ Èç¹û building=-1 ±íÊ¾ÈÎºÎ building ¾ù¿ÉÒÔ  floorÍ¬Àí doorÈç¹ûÊÇ¿Õ×Ö·û´®Ò²ÊÇÈÎºÎ¶¼¿ÉÒÔ
-	public static List<Classroom> searchClassroom(int building,int floor,String door) throws SQLException, ClassNotFoundException{
-		List<Classroom> list = new ArrayList<Classroom>();
-		// Í¨¹ı SQL
-		//Á¬½Ó·şÎñÆ÷ºÍÊı¾İ¿âtest
-		String userName = "wwt";  //Ä¬ÈÏÓÃ»§Ãû
-		String userPwd = "310522";  //ÃÜÂë
-		Connection dbConn;  
-	    Class.forName("net.sourceforge.jtds.jdbc.Driver") ;   
-	    dbConn = DriverManager.getConnection(dbURL, userName, userPwd);
-	    String sql = "select * from classroom ";
-	    if(building == -1 && floor == -1 && door == "") {}
-	    else
-	    {
-	    	sql = sql + "where ";
-	    	if(building != -1)
-		    {
-		    	sql = sql + "building = " + building + "";
-		    }
-	    	if(floor != -1)
-		    {
-		    	sql = sql + " and floor = " + floor + "";
-		    }
-	    	if(door != "")
-		    {
-		    	sql = sql + " and door = " + door + "";
-		    }
-	    }
-	    System.out.println(sql);
-        PreparedStatement ps = dbConn.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery();
-        while(rs.next())
-        {
-        	Classroom res = new Classroom();
-	        res.classroomType = rs.getInt("classroomType");
-	        res.building = rs.getInt("building");
-	        res.floor = rs.getInt("floor");
-	        res.door = rs.getString("door");
-	        res.classroomID = rs.getInt("classroomID");
-	        res.remarks = rs.getString("remarks");
-	        res.seat = rs.getInt("seat");
-	        list.add(res);
-        }
+
+	//æ ¹æ®æ¡ä»¶æŸ¥æ•™å®¤ å¦‚æœ building=-1 è¡¨ç¤ºä»»ä½• building å‡å¯ä»¥  flooråŒç† doorå¦‚æœæ˜¯ç©ºå­—ç¬¦ä¸²ä¹Ÿæ˜¯ä»»ä½•éƒ½å¯ä»¥
+	public static ArrayList<Classroom> searchClassroom(int building,int floor,String door) throws SQLException, ClassNotFoundException{
+		ArrayList<Classroom> list = new ArrayList<Classroom>();
+		// é€šè¿‡ SQL
+		//è¿æ¥æœåŠ¡å™¨å’Œæ•°æ®åº“test
+		
+		
+		Connection dbConn;
+		Class.forName("net.sourceforge.jtds.jdbc.Driver") ;
+		dbConn = DriverManager.getConnection(dbURL, userName, userPwd);
+		String sql = "select * from classroom ";
+		if(building == -1 && floor == -1 && door == "") {}
+		else
+		{
+			sql = sql + "where ";
+			if(building != -1)
+			{
+				sql = sql + "building = " + building + "";
+			}
+			if(floor != -1)
+			{
+				sql = sql + " and floor = " + floor + "";
+			}
+			if(door != "")
+			{
+				sql = sql + " and door = " + door + "";
+			}
+		}
+		System.out.println(sql);
+		PreparedStatement ps = dbConn.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		while(rs.next())
+		{
+			Classroom res = new Classroom();
+			res.classroomType = rs.getInt("classroomType");
+			res.building = rs.getInt("building");
+			res.floor = rs.getInt("floor");
+			res.door = rs.getString("door");
+			res.classroomID = rs.getInt("classroomID");
+			res.remarks = rs.getString("remarks");
+			res.seat = rs.getInt("seat");
+			list.add(res);
+		}
 		return list;
 	}
 }

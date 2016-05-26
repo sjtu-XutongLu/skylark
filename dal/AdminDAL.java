@@ -14,24 +14,25 @@ import com.example.xutong.toolbar.model.Application;
  * Created by yuchenlin on 5/22/16.
  */
 public class AdminDAL {
-	public static String dbURL = "jdbc:jtds:sqlserver://localhost:1433/test1";  //Á¬½Ó·şÎñÆ÷ºÍÊı¾İ¿âtest
+    public static String dbURL = DBAdapterConfig.dbURL;
+    public static String userName = DBAdapterConfig.userName;  //é»˜è®¤ç”¨æˆ·å
+    public static String userPwd = DBAdapterConfig.userPwd;  //å¯†ç 
+
     public static Admin getAdmin(long adminID) throws ClassNotFoundException, SQLException{
         Admin res = new Admin();
-		String userName = "wwt";  //Ä¬ÈÏÓÃ»§Ãû
-		String userPwd = "310522";  //ÃÜÂë
-		Connection dbConn;  
-	    Class.forName("net.sourceforge.jtds.jdbc.Driver");
-	    dbConn = DriverManager.getConnection(dbURL, userName, userPwd);
-	    String sql = "select * from apply where adminID = " + (adminID + "");
-	    System.out.println(sql);
+        Connection dbConn;
+        Class.forName("net.sourceforge.jtds.jdbc.Driver");
+        dbConn = DriverManager.getConnection(dbURL, userName, userPwd);
+        String sql = "select * from apply where adminID = " + (adminID + "");
+        System.out.println(sql);
         PreparedStatement ps = dbConn.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         if(rs.next())
         {
-	        res.adminID = rs.getInt("adminID");
-	        res.name = rs.getString("name");
-	        res.password = rs.getString("password");
+            res.adminID = rs.getInt("adminID");
+            res.name = rs.getString("name");
+            res.password = rs.getString("password");
         }
-        return res;  
+        return res;
     }
 }
