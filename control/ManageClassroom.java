@@ -20,7 +20,8 @@ public class ManageClassroom {
 		ArrayList<Classroom> all = ClassroomDAL.searchClassroom(-1,-1,"");
 		Iterator<Classroom> it = all.iterator();
 		ArrayList<Classroom> res =  new ArrayList<Classroom>();
-
+		System.out.println("Classroom Size");
+		System.out.println(all.size());
 		while(it.hasNext()){
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTime(date);
@@ -29,6 +30,7 @@ public class ManageClassroom {
 				res.add(c);
 			}
 		}
+		System.out.println(res.size());
 		return res;
 	}
 }

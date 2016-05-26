@@ -54,7 +54,7 @@ public class ProcessApplication {
         }
     }
 
-    public static ArrayList<Application> getUserApplication(int userID) {
+    public static ArrayList<Application> getUserApplication(int userID) throws SQLException, ClassNotFoundException {
         ArrayList<Application> res=ApplicationDAL.getApplicationByUser(userID);
         return res;
     }
